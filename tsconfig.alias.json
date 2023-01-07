@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "baseUrl": "src",
+        "paths": {
+            "configuration": ["configuration"],
+            "constants": ["constants"],
+            "controllers": ["controllers"],
+            "core": ["core"],
+            "database": ["database"],
+            "interfaces": ["interfaces"],
+            "libs": ["libs"],
+            "middlewares": ["middlewares"],
+            "routers": ["routers"],
+            "servers": ["servers"],
+            "tests": ["tests"],
+            "types": ["types"],
+            "utils": ["utils"]
+          }
+    }
+}
