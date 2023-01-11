@@ -10,14 +10,15 @@ class UserRouter extends BaseRouter<IUserController> {
   }
 
   private execute() {
-    this.RegisterPostRoute("/user/get", this.getUser.bind(this));
+    this.RegisterGetRoute("/user/get", this.getUser.bind(this));
     this.RegisterPostRoute("/user/create", this.createUser.bind(this));
-    this.RegisterGetRoute("/user/test", this.test.bind(this));
     this.RegisterPostRoute("/user/login", this.login.bind(this));
+    this.RegisterPutRoute("/user/takeBook", this.takeBook.bind(this));
   }
 
   private async getUser(req: Request, res: Response): Promise<Response> {
-    const response = await this._controller.get(req.body.id);
+    const id:number = parseInt(req.query.id as string)
+    const response = await this._controller.get(id);
     return res.status(HTTPStatuses.SUCCESS).json({ response });
   }
 
@@ -31,9 +32,11 @@ class UserRouter extends BaseRouter<IUserController> {
     return res.status(HTTPStatuses.SUCCESS).json({ response });
   }
 
-  private async test(req: Request, res: Response): Promise<Response> {
-    return res.status(200).json({ response: "All Ok!" });
+  public async takeBook(req: Request, res: Response): Promise<Response> {
+    const response = await this._controller.takeBook(req.body.login, req.body.pkBook);
+    return res.status(HTTPStatuses.SUCCESS).json({ response: "Success taked" });
   }
+
 }
 
 export default UserRouter;

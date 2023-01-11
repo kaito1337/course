@@ -9,10 +9,13 @@ class UserRepository implements IUserRepository {
   }
 
   public async create(data: IUserModelCreation): Promise<any> {
+    
     return await User.create({
       name: data.name,
       login: data.login,
       password: await bcrypt.hash(data.password, +Configuration.bcrypt.rounds),
+      listEditors: [],
+      takedBooks: [],
     });
   }
 
@@ -22,6 +25,10 @@ class UserRepository implements IUserRepository {
         login,
       },
     });
+  }
+
+  public async updateUser(login: string, data: any): Promise<any> {
+    return await User.update(data , { where: { login } })
   }
 }
 

@@ -7,7 +7,7 @@ interface IUserModel {
   listEditors: Array<number>;
 }
 
-interface IUserModelCreation extends Omit<IUserModel, "id" | "takedBooks" | "listEditors"> {}
+interface IUserModelCreation extends Omit<IUserModel, "id"> {}
 interface IUserModelAccess extends Omit<IUserModel, "id" | "name" | "takedBooks" | "listEditors">  {}
 
 
